@@ -1,0 +1,20 @@
+[package]
+name = "api-service-example"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.4"
+chrono = { version = "0.4.42", features = ["serde"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.141"
+sqlx = { version = "0.8.6", features = [
+    "chrono",
+    "sqlite",
+    "macros",
+    "runtime-tokio-rustls"] }
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread"] }
+tower-http = "0.6.6"
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
+
