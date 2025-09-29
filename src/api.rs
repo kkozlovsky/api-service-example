@@ -11,7 +11,7 @@ pub async fn ping(State(db_pool): State<SqlitePool>) -> Result<String, Error> {
     let mut conn = db_pool.acquire().await?;
     conn.ping()
         .await
-        .map(|_| "ok".to_string())
+        .map(|_| "pong".to_string())
         .map_err(Into::into)
 }
 
