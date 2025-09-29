@@ -1,4 +1,3 @@
-````markdown
 # API Service Example
 
 Пример простого REST API сервиса на **Rust** с использованием фреймворка [Axum](https://github.com/tokio-rs/axum) и базы данных **SQLite** через [SQLx](https://github.com/launchbadge/sqlx).
@@ -19,7 +18,7 @@
 git clone https://github.com/kkozlovsky/api-service-example.git
 cd api-service-example
 cargo run
-````
+```
 
 Сервис по умолчанию поднимается на `http://127.0.0.1:3000`.
 
