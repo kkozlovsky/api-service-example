@@ -11,7 +11,7 @@ pub async fn create_router(db_pool: sqlx::Pool<sqlx::Sqlite>) -> axum::Router {
         .nest(
             "/v1",
             Router::new()
-                .route("todos", get(todo_list).post(todo_create))
+                .route("/todos", get(todo_list).post(todo_create))
                 .route(
                     "/todos/{id}",
                     get(todo_read).put(todo_update).delete(todo_delete),
