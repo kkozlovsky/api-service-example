@@ -1,59 +1,60 @@
 # API Service Example
 
-Пример простого REST API сервиса на **Rust** с использованием фреймворка [Axum](https://github.com/tokio-rs/axum) и базы данных **SQLite** через [SQLx](https://github.com/launchbadge/sqlx).
+An example of a simple REST API service in **Rust** using the [Axum](https://github.com/tokio-rs/axum) framework and **SQLite** database via [SQLx](https://github.com/launchbadge/sqlx).
 
-## Возможности
-- CRUD операции для сущностей (`todos`)
-- Обработка ошибок с помощью собственного `Error` типа
-- Миграции базы данных
-- Асинхронный сервер на Tokio
+## Features
+- CRUD operations for entities (`todos`)
+- Error handling with a custom `Error` type
+- Database migrations
+- Asynchronous server powered by Tokio
 
-## Требования
+## Requirements
 - Rust (>=1.75)
 - Cargo
 - SQLite
 
-## Установка и запуск
+## Installation & Run
 ```bash
 git clone https://github.com/kkozlovsky/api-service-example.git
 cd api-service-example
 cargo run
 ```
 
-Сервис по умолчанию поднимается на `http://127.0.0.1:3000`.
+The service runs by default at `http://127.0.0.1:3000`.
 
-## Миграции
+## Migrations
 
-Миграции находятся в папке `migrations/`.
+Migrations are located in the `migrations/` directory.
 
-## Структура проекта
+## Project Structure
 
 ```
-src/           # код сервиса (хэндлеры, модели, ошибки)
-migrations/    # SQL миграции
-db.sqlite      # локальная база данных
+src/           # service code (handlers, models, errors)
+migrations/    # SQL migrations
+db.sqlite      # local database
 ```
 
-## Примеры API
+## API Examples
 
 ### Ping
+
 ```bash
 curl http://127.0.0.1:3000/ping
 ```
 
-### Получить список всех элементов
+### Get all todos
 
 ```bash
 curl http://127.0.0.1:3000/v1/todos
 ```
 
-### Получить элемент по ID
+### Get todo by ID
 
 ```bash
 curl http://127.0.0.1:3000/v1/todos/1
 ```
 
-### Создать новый элемент
+### Create a new todo
 
 ```bash
 curl -X POST http://127.0.0.1:3000/v1/todos \
@@ -63,7 +64,7 @@ curl -X POST http://127.0.0.1:3000/v1/todos \
 }'
 ```
 
-### Обновить элемент
+### Update a todo
 
 ```bash
 curl -X PUT http://127.0.0.1:3000/v1/todos/1 \
@@ -74,7 +75,7 @@ curl -X PUT http://127.0.0.1:3000/v1/todos/1 \
 }'
 ```
 
-### Удалить элемент
+### Delete a todo
 
 ```bash
 curl -X DELETE http://127.0.0.1:3000/v1/todos/1
