@@ -41,31 +41,31 @@ impl UpdateTodo {
 }
 
 impl Todo {
-    pub async fn list(dbpool: SqlitePool) -> Result<Vec<Todo>, Error> {
+    pub async fn list(db_pool: SqlitePool) -> Result<Vec<Todo>, Error> {
         query_as("select * from todos")
-            .fetch_all(&dbpool)
+            .fetch_all(&db_pool)
             .await
             .map_err(Into::into)
     }
 
-    pub async fn read(dbpool: SqlitePool, id: i64) -> Result<Todo, Error> {
+    pub async fn read(db_pool: SqlitePool, id: i64) -> Result<Todo, Error> {
         query_as("select * from todos where id = ?")
             .bind(id)
-            .fetch_one(&dbpool)
+            .fetch_one(&db_pool)
             .await
             .map_err(Into::into)
     }
 
-    pub async fn create(dbpool: SqlitePool, new_todo: CreateTodo) -> Result<Todo, Error> {
+    pub async fn create(db_pool: SqlitePool, new_todo: CreateTodo) -> Result<Todo, Error> {
         query_as("insert into todos (body) values (?) returning *")
             .bind(new_todo.body())
-            .fetch_one(&dbpool)
+            .fetch_one(&db_pool)
             .await
             .map_err(Into::into)
     }
 
     pub async fn update(
-        dbpool: SqlitePool,
+        db_pool: SqlitePool,
         id: i64,
         update_todo: UpdateTodo,
     ) -> Result<Todo, Error> {
@@ -73,15 +73,15 @@ impl Todo {
             .bind(update_todo.body())
             .bind(update_todo.completed())
             .bind(id)
-            .fetch_one(&dbpool)
+            .fetch_one(&db_pool)
             .await
             .map_err(Into::into)
     }
 
-    pub async fn delete(dbpool: SqlitePool, id: i64) -> Result<(), Error> {
+    pub async fn delete(db_pool: SqlitePool, id: i64) -> Result<(), Error> {
         query("delete from todos where id =?")
             .bind(id)
-            .execute(&dbpool)
+            .execute(&db_pool)
             .await?;
         Ok(())
     }
